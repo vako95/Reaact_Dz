@@ -1,75 +1,93 @@
-import { useContext } from 'react'
-import { ThemeContext } from '../../context/ThemeContext'
-import HideButton from './components/HideButton/HideButton'
-
 import Logo from './components/Logo/Logo'
 import Menu from './components/Menu/Menu'
-import LogoSvg from './components/assets/img/logo.svg'
+import HideButton from './components/HideButton/HideButon'
+import { useSelector, useDispatch } from 'react-redux'
+import { OPEN_BAR } from '../../store/Side/SideSlice'
+import { useMemo } from 'react'
+
+import SideLogo from './components/assets/img/logo.svg'
 import './SideBar.css'
 
-
 const SideBar = () => {
-    const { theme, onCollpased } = useContext(ThemeContext)
+    const { isCollapsed } = useSelector((state) => state.side);
+    const dispatch = useDispatch();
 
+    const sideHide = () => {
+        dispatch(OPEN_BAR())
+    }
     const items = [
         {
-            "id":1,
-            "name": 'Dashboard',
-            "icon": 'fi fi-sr-apps',
+            "name": "Dashboard",
+            "icon": "fi fi-sr-apps",
             "dropdown": []
         },
         {
-            "id":2,
-            "name": 'Dashboard',
-            "icon": 'fi fi-sr-shopping-cart',
+            "name": "E-Commerce",
+            "icon": "fi-sr-shopping-cart",
             "dropdown": [
                 {
-                    "name":'First Item',
-                    "title":'First Item',
-                    "date":'First Item',
-                    "href":'/#'
+                    "title": "File1"
+                },
+                {
+                    "title": "File2"
                 }
             ]
         },
         {
-            "id":3,
-            "name": 'Dashboard',
-            "icon": 'fi fi-sr-shopping-cart',
+            "name": "Project",
+            "icon": "fi fi-sr-assept-document",
             "dropdown": []
         },
         {
-            "name": 'Dashboard',
-            "icon": 'fi fi-sr-shopping-cart',
-            "dropdown": []
-        },
-        {
-            "id":4,
-            "name": 'Dashboard',
-            "icon": 'fi fi-sr-shopping-cart',
+            "name": "Contact",
+            "icon": "fi fi-sr-comment-user",
             "dropdown": [
                 {
-                    "name":'First Item',
-                    "href":'/#'
+                    "title": "File1"
+                },
+                {
+                    "title": "File2"
                 }
             ]
         },
-
+        {
+            "name": "Finance",
+            "icon": "fi fi-sr-money",
+            "dropdown": []
+        },
+        {
+            "name": "File Manager",
+            "icon": "fi fi-sr-folder",
+            "dropdown": []
+        },
+        {
+            "name": "Chat",
+            "icon": "fi fi-sr-comment-alt",
+            "dropdown": []
+        },
+        {
+            "name": "Calendar",
+            "icon": "fi fi-sr-calendar",
+            "dropdown": []
+        },
     ]
-    const sideCol = theme.isSideBarCollapsed ? 'collapsed' : ''
+    const cool = isCollapsed ? "collapsed" : ""
     return (
-        <div className={`side ${sideCol}`}>
-            
+        <div className={`side ${cool}`}>
             <Logo
-                logo={LogoSvg}
-                title="Dazel"
-                isCollpased={theme.isSideBarCollapsed}
+                img={SideLogo}
+                name="Dazel"
+                isCollapsed={isCollapsed}
             />
-            <Menu items={items} 
-              isCollpased={theme.isSideBarCollapsed}
+            <Menu
+                items={items}
+                isCollapsed={isCollapsed}
             />
-            <HideButton 
-            onCollapsed={onCollpased}
-            theme={theme}
+            <HideButton
+                name="Hide Menu"
+                onSide={sideHide}
+                isCollapsed={isCollapsed}
+
             />
         </div>
     )

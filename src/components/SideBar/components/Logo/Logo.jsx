@@ -1,13 +1,29 @@
-import s from './Logo.module.css'
 
+import { Link } from 'react-router-dom';
+import './Logo.css'
 
-const Logo = ({ logo, title }) => {
+const Logo = ({ name, img, isCollapsed }) => {
+
     return (
-        <div className={s.logo}>
-            <div className={s.logo_container}>
-                <img className={s.logo_img} src={logo} alt="" />
-            </div>
-            <span className={s.logo_title}>{title}</span>
+
+        <div className="logo">
+            {isCollapsed ? (
+                <figure className="collapse_container">
+                    <img className='logoImg_coolaps' src={img} alt="" />
+                </figure>
+            ) : (
+                <Link>
+                    <div className="img_container">
+                        <img className='logoImg' src={img} alt="" />
+                    </div>
+                    <div className="name_container">
+                        <span className='logoName'>{name}</span>
+                    </div>
+                </Link>
+
+            )}
+
+
         </div>
     )
 }

@@ -1,37 +1,31 @@
-import { useState } from 'react';
-import './Menu.css';
+import { NavLink } from 'react-router-dom';
+import './MenuItem.css'
 
-const MenuItem = ({ item: { icon, name, dropdown, id } }) => {
-
-    const [openIndex, setOpenIndex] = useState(null);
-
-    const handleToggle = (index) => {
-        setOpenIndex(prevIndex => (prevIndex === index ? null : index));
-        console.log(index)
-    };
-
+const MenuItem = ({ name, icon, isCollapsed }) => {
+console.log(isCollapsed)
     return (
 
+        <li className='menuLi'>
+            <NavLink>
+                <div className='menu_content'>
+                    <div className='item_icon'>
+                        <i className={icon}></i>
+                        
+                    </div>
+                  
+                  
+                    {!isCollapsed && (
+                      <div className="menu_title">
+                      <span className='menu_span'>{name}</span>
+                  </div>
+                    )}
 
-        <li className="dropdown">
-            <div className="menu_item" >
-                <div className="menu_icon">
-                    <i onClick={() => handleToggle(id)} className={icon}></i>
                 </div>
-                <span className="menu_name">{name}</span>
-            </div>
-            {/* <div className="dropmenu" style={{display: openIndex === id ? '' : 'none'}}> */}
-            <div className="dropmenu" style={{maxHeight: openIndex === id ? '600px' : '0px'}}>
-                {dropdown && dropdown.map((dropItem, dropIndex) => (
-                    <ul key={dropIndex}>
-                        <li>{dropItem.name}</li>
-                        <li>{dropItem.title}</li>
-                        <li>{dropItem.date}</li>
-                    </ul>
-                ))}
-            </div>
+            </NavLink>
         </li>
-    );
-};
+
+
+    )
+}
 
 export default MenuItem;

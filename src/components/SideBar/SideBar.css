@@ -1,16 +1,18 @@
 .side {
-    position: fixed;
     width: 264px;
     height: 100vh;
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-   
-    border-right: 1px solid #F0F1F3;
+    flex-direction: column;
     overflow: hidden;
+    transition: width 1024ms linear;
 }
 .side.collapsed {
-    width: 80px;
-    
+    width: 64px;
+    position: fixed;
+
 }
+/* .side.collapsed:after{
+ 
+} */

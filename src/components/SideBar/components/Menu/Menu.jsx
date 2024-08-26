@@ -1,22 +1,25 @@
-import MenuItem from "./components/MenuItem";
+
+import MenuItem from './components/MenuItem';
 
 
+import './Menu.css'
 
-const Menu = ({ items }) => {
+const Menu = ({ items, isCollapsed }) => {
 
     return (
-        <div className="menu">
-            <ul className="menu_list">
-
-                {items.map((item,index) => (
+        <nav className="menu">
+            <ul className='menu_list'>
+                {items.map((item, index) => (
                     <MenuItem
-                        item={item}
-                        
                         key={index}
+                        name={item.name}
+                        icon={item.icon}
+                        dropdown={item.collapsed}
+                        isCollapsed={isCollapsed}
                     />
                 ))}
             </ul>
-        </div>
+        </nav>
     )
 }
 

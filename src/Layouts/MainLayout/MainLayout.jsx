@@ -1,13 +1,14 @@
+import { Outlet } from 'react-router-dom'
+
 import './MainLayout.css'
-import SideBar from '../../components/SideBar/SideBar';
+
 
 const MainLayout = () => {
-
     return (
         <div className="main">
-            <SideBar />
+         <Outlet />
         </div>
     )
 }
 
-export default MainLayout;
+export default MainLayout
